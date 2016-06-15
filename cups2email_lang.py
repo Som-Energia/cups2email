@@ -27,10 +27,12 @@ def cups2email(template=None,filename=None):
             cups_id = cups_obj.search([('name','=',cups)])[0]
         except:
             print "El CUPS no existe"
+            continue
         try:
             pol_id = pol_obj.search([('cups','=',cups_id)])[0]
         except:
             print "No hay pólizas activas asociadas al CUPS"
+            continue
         pol=pol_obj.get(pol_id)
         print pol.pagador.lang
         print pol.pagador.www_email
