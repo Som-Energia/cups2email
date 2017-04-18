@@ -31,18 +31,19 @@ def cups2email(template=None,filename=None):
             continue
         try:
             pol_id = pol_obj.search([('cups','=',cups_id)])[0]
+            print pol_id
         except:
             print "No hay pólizas activas asociadas al CUPS"
             row+=1
             continue
-        pol=pol_obj.get(pol_id)
-        print pol.pagador.lang
-        print pol.pagador.www_email
-        ctx = {'active_ids': [pol.pagador.id],
-              'active_id': pol.pagador.id,
+        #pol=pol_obj.get(pol_id)
+        #print pol.pagador.lang
+        #print pol.pagador.www_email
+        ctx = {'active_ids': [pol_id],
+              'active_id': pol_id,
               'template_id': templ_id,
               'src_model': 'giscedata.polissa',
-              'src_rec_ids': [pol.pagador.id],
+              'src_rec_ids': [pol_id],
               'from': 1}
         params = {'state': 'single',
                  'priority':0,
